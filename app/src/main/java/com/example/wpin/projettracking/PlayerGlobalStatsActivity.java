@@ -23,9 +23,9 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
         TextView titrePseudoRegion = findViewById(R.id.tvPlayerName);
         titrePseudoRegion.setText(pseudo + " - " + region);
 
-        // Appel à l'API de LoL pour récupérer les informations du joueur. (Niveau pour l'instant)
+        // Appel à l'API de LoL pour récupérer les informations du joueur. (Niveau pour l'instant) / Si ça fonctionne pas -> changer l'api key dans l'url.
         Ion.with(this)
-                .load("https://" + region + "1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + pseudo + "?api_key=RGAPI-b763a53e-0613-44da-abc1-37aa4acd3dd0")
+                .load("https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + pseudo + "?api_key=RGAPI-b763a53e-0613-44da-abc1-37aa4acd3dd0")
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override
