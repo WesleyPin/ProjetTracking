@@ -24,4 +24,5 @@ Wiki Git : (A Compléter/Corriger/etc)
   -  Dans le cas où le pull --rebase ne fonctionne pas, vous avez surement des modifications en local qui bloque la                              récupération des modifications sur la branche dans ce cas il faut commit vos modifications puis pull --rebase                              et enfin push ou undo votre dernier commit.
   -  Lorsque vous voulez push vos modifications vers la branche il faut vérifier que votre code compile bien pour que                            cela n'impact pas le travail des autres qui vont récupérer vos modifications.
                           
-
+Informations/tutoriel sur l'API LoL :
+https://aawebapps.com/tutorials/tutorial1.html
