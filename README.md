@@ -26,3 +26,5 @@ Wiki Git : (A Compléter/Corriger/etc)
                           
 Informations/tutoriel sur l'API LoL :
 https://aawebapps.com/tutorials/tutorial1.html
+
+URL pour appel à l'API, récupérer les informations d'un jouer (LoL) : https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/<PSEUDO>?api_key=<key>
