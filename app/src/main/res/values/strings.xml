@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">ProjetTracking</string>
+    <string-array name="region_array">
+        <item>EUW</item>
+        <item>NA</item>
+        <item>EUNE</item>
+        <item>RU</item>
+        <item>TR</item>
+        <item>BR</item>
+        <item>KR</item>
+        <item>OCE</item>
+        <item>LAS</item>
+        <item>LAN</item>
+        <item>JP</item>
+    </string-array>
 </resources>

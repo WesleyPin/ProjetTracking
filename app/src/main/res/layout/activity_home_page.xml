@@ -8,20 +8,50 @@
 
     <EditText
         android:id="@+id/plain_text_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Chercher un pseudo..."
-        android:inputType="text" />
+        android:layout_width="252dp"
+        android:layout_height="42dp"
+        android:hint="Pseudo"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSearch"
+        app:layout_constraintEnd_toStartOf="@+id/spinRegion"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeTitle" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Rechercher"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plain_text_input"
-        app:layout_constraintVertical_bias="0.103" />
+        app:layout_constraintTop_toBottomOf="@+id/plain_text_input" />
+
+    <TextView
+        android:id="@+id/tvHomeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chercher un joueur"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/plain_text_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinRegion"
+        android:layout_width="118dp"
+        android:layout_height="42dp"
+        android:entries="@array/region_array"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.708"
+        app:layout_constraintStart_toEndOf="@+id/plain_text_input"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeTitle"
+        app:layout_constraintVertical_bias="0.285" />
 
 </android.support.constraint.ConstraintLayout>
