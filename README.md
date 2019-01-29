@@ -29,3 +29,5 @@ https://aawebapps.com/tutorials/tutorial1.html
 
 URL pour appel à l'API, récupérer les informations d'un jouer (LoL) : 
 https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/PSEUDO?api_key=key
+
+Selon Mme Keller : Voir pour intégrer un widget qui s'actualise toutes les X minutes sur l'écran d'accueil du smartphone.
