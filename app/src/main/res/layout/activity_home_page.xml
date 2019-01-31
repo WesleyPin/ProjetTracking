@@ -7,7 +7,7 @@
     tools:context=".HomePage">
 
     <EditText
-        android:id="@+id/tvPseudo"
+        android:id="@+id/etSearchPlayer"
         android:layout_width="252dp"
         android:layout_height="42dp"
         android:hint="Pseudo"
@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPseudo" />
+        app:layout_constraintTop_toBottomOf="@+id/etSearchPlayer" />
 
     <TextView
         android:id="@+id/tvHomeTitle"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="Chercher un joueur"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintBottom_toTopOf="@+id/tvPseudo"
+        app:layout_constraintBottom_toTopOf="@+id/etSearchPlayer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,8 +50,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.708"
-        app:layout_constraintStart_toEndOf="@+id/tvPseudo"
+        app:layout_constraintStart_toEndOf="@+id/etSearchPlayer"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeTitle"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintVertical_bias="0.301" />
 
 </android.support.constraint.ConstraintLayout>

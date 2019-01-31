@@ -7,17 +7,17 @@
     tools:context=".PlayerGlobalStatsActivity">
 
     <TextView
-        android:id="@+id/tvPlayerName"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvPlayerUsername"
+        android:layout_width="263dp"
         android:layout_height="wrap_content"
         android:text="Nom du joueur"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintVertical_bias="0.042" />
 
     <TextView
         android:id="@+id/tvPlayerLevel"
@@ -26,12 +26,13 @@
         android:text="Niveau"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlayerName"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayerUsername"
+        app:layout_constraintVertical_bias="0.091" />
 
     <Button
-        android:id="@+id/btnUpdatePlayerStats"
+        android:id="@+id/btnUpdatePlayerProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mettre à jour le profil"
@@ -40,4 +41,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPlayerLevel"
         app:layout_constraintVertical_bias="0.904" />
+
+    <ImageView
+        android:id="@+id/ivPlayerIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btnUpdatePlayerProfile"
+        app:layout_constraintEnd_toStartOf="@+id/tvPlayerUsername"
+        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.031"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvPlayerRegion"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:text="Region"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvPlayerLevel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.341"
+        app:layout_constraintStart_toEndOf="@+id/ivPlayerIcon"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayerUsername"
+        app:layout_constraintVertical_bias="0.363" />
 </android.support.constraint.ConstraintLayout>
