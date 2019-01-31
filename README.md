@@ -31,3 +31,6 @@ URL pour appel à l'API, récupérer les informations d'un jouer (LoL) :
 https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/PSEUDO?api_key=key
 
 Selon Mme Keller : Voir pour intégrer un widget qui s'actualise toutes les X minutes sur l'écran d'accueil du smartphone.
+
+Selon ce qu'on veut implémenter (sachant qu'on va en avoir besoin à 100% ne serait-ce que pour les icônes de joueur), il va falloir ajouter "Data Dragon" à notre projet. https://developer.riotgames.com/static-data.html
+En gros, c'est une sorte de base de données statique du jeu (où sont stockés tous les splash art, icônes de joueur, de spell, ... etc.)
