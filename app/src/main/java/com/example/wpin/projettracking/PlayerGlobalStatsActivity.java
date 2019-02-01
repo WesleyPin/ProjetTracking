@@ -13,7 +13,8 @@ import com.koushikdutta.ion.Ion;
 
 public class PlayerGlobalStatsActivity extends AppCompatActivity
 {
-    final static String API_KEY = "RGAPI-1a661ebc-0da3-4d90-9068-6253b9f6d022"; // à remplacer si deprecated
+    final static String API_KEY = "RGAPI-9fb15226-9ff6-4930-9f37-af0028bfd2b3"; // à remplacer si deprecated
+    String strProfileIconUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,8 +43,9 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                         tvPlayerUsername.setText(strPlayerUsername);
 
                         ImageView ivPlayerIcon = findViewById(R.id.ivPlayerIcon);
-                        String strPlayerIcon = result.get("profileIconId").getAsString();
-                        // TODO : Changer l'icône (voir fin du README pour DATA DRAGON)
+                        String strPlayerIconId = result.get("profileIconId").getAsString();
+                        strProfileIconUrl = "http://ddragon.leagueoflegends.com/cdn/9.2.1/img/profileicon/" + strPlayerIconId + ".png";  // 9.2.1 = version la plus récente (01/02/2019)
+                        Ion.with(ivPlayerIcon).load(strProfileIconUrl);
 
                         String strPlayerLevel = result.get("summonerLevel").getAsString();
                         TextView tvPlayerLevel = findViewById(R.id.tvPlayerLevel);
