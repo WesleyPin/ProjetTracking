@@ -13,7 +13,8 @@ import com.koushikdutta.ion.Ion;
 
 public class PlayerGlobalStatsActivity extends AppCompatActivity
 {
-    final static String API_KEY = "RGAPI-9fb15226-9ff6-4930-9f37-af0028bfd2b3"; // à remplacer si deprecated
+    final static String API_KEY = "RGAPI-9fb15226-9ff6-4930-9f37-af0028bfd2b3"; // à remplacer si expirée
+    String strProfileIconVersion;   // La version des icônes de profil ------> https://ddragon.leagueoflegends.com/realms/euw.json
     String strProfileIconUrl;
 
     @Override
@@ -25,6 +26,20 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
         // Récupération du username et de la région recherchés par l'utilisateur.
         String strSearchedUsername = getIntent().getStringExtra("searchedUsername");
         String strSearchedRegion = getIntent().getStringExtra("searchedRegion");
+
+
+
+        Ion.with(this)
+                .load("https://ddragon.leagueoflegends.com/realms/" + strSearchedRegion.toLowerCase() + ".json")
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        JsonObject jObj;
+                        jObj = result.get("n").getAsJsonObject();
+                        strProfileIconVersion = jObj.get("profileicon").getAsString();
+                    }
+                });
 
         String strRegion = getRegionName(strSearchedRegion);    // Récupération du nom de la région à mettre dans l'URL de requête
 
@@ -44,7 +59,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
                         ImageView ivPlayerIcon = findViewById(R.id.ivPlayerIcon);
                         String strPlayerIconId = result.get("profileIconId").getAsString();
-                        strProfileIconUrl = "http://ddragon.leagueoflegends.com/cdn/9.2.1/img/profileicon/" + strPlayerIconId + ".png";  // 9.2.1 = version la plus récente (01/02/2019)
+                        strProfileIconUrl = "http://ddragon.leagueoflegends.com/cdn/" + strProfileIconVersion + "/img/profileicon/" + strPlayerIconId + ".png";
                         Ion.with(ivPlayerIcon).load(strProfileIconUrl);
 
                         String strPlayerLevel = result.get("summonerLevel").getAsString();
