@@ -66,4 +66,15 @@
         app:layout_constraintStart_toEndOf="@+id/ivPlayerIcon"
         app:layout_constraintTop_toBottomOf="@+id/tvPlayerUsername"
         app:layout_constraintVertical_bias="0.363" />
+
+    <TextView
+        android:id="@+id/tvPlayerMostPlayedChamp"
+        android:layout_width="wrap_content"
+        android:layout_height="407dp"
+        android:text="Champion le plus joué :"
+        app:layout_constraintBottom_toTopOf="@+id/btnUpdatePlayerProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayerLevel" />
 </android.support.constraint.ConstraintLayout>
