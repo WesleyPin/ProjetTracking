@@ -56,12 +56,11 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
         getPlayerMostPlayedChampInfo(this);
 
-        TextView tvPlayerMostPlayedChamp = findViewById(R.id.tvPlayerMostPlayedChamp);
-        String temp = tvPlayerMostPlayedChamp.getText().toString();
+        TextView tvMPCName = findViewById(R.id.tvMPCName);
 
         String mostPlayedChampName = mPreferences.getString("mostPlayedChampName", "null");
 
-        tvPlayerMostPlayedChamp.setText(temp + mostPlayedChampName);
+        tvMPCName.setText(mostPlayedChampName);
 
         Button btnUpdatePlayerProfile = findViewById(R.id.btnUpdatePlayerProfile);
         btnUpdatePlayerProfile.setOnClickListener(new View.OnClickListener() {
