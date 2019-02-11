@@ -54,7 +54,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
         String strChampionVersion = mPreferences.getString("championVersion", "null");
 
-        // getPlayerMostPlayedChampInfo(this);
+        getPlayerMostPlayedChampInfo(this);
 
         TextView tvPlayerMostPlayedChamp = findViewById(R.id.tvPlayerMostPlayedChamp);
         String temp = tvPlayerMostPlayedChamp.getText().toString();
@@ -185,7 +185,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        int i = 0, highestChampionPoints = 0, mostPlayedChamp = 0, championPoints = 0, champ = 0;
+                        int i, highestChampionPoints = 0, mostPlayedChamp = 0, championPoints = 0, champ = 0;
 
                         for(i = 0; i < result.size(); i++)  // Tant qu'il y a des objets Json à parser (tant qu'on a pas fait tous les champions ?)
                         {
@@ -212,16 +212,12 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
         String strChampionVersion = mPreferences.getString("championVersion", "null");
 
 
-
-
-
-        /* Ion.with(this)
+        Ion.with(this)
                 .load("http://ddragon.leagueoflegends.com/cdn/" + strChampionVersion + "/data/fr_FR/champion.json") // le "fr_FR" est rentré dans le dur. A voir pour changer (chiant)
                 .asString()
                 .setCallback(new FutureCallback<String>() {
                     @Override
                     public void onCompleted(Exception e, String result) {
-                        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
                         JSONArray listeChampion = new JSONArray();
                         int i;
                         int mostPlayedChamp = mPreferences.getInt("mostPlayedChamp", 0);
@@ -239,6 +235,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                                 JSONObject jObj = listeChampion.getJSONObject(i);
                                 if(mostPlayedChamp == jObj.getInt("key")){
                                     String mostPlayedChampName = jObj.get("id").toString();
+                                    SharedPreferences.Editor preferencesEditor = mPreferences.edit();
                                     preferencesEditor.putString("mostPlayedChampName", mostPlayedChampName);
                                     preferencesEditor.apply();
                                 }
@@ -249,18 +246,17 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
 
 
-
-                        // JsonArray resultArray = result.get("data").getAsJsonArray(); // N'a pas l'air de fonctionner...
-                        /* for(i = 0; i < resultArray.size(); i++){
+                        /* // JsonArray resultArray = result.get("data").getAsJsonArray(); // N'a pas l'air de fonctionner...
+                        for(i = 0; i < resultArray.size(); i++){
                             JsonObject jObj = resultArray.get(i).getAsJsonObject();
                             if(mostPlayedChamp == jObj.get("key").getAsInt()){
                                 String mostPlayedChampName = jObj.get("id").getAsString();
                                 preferencesEditor.putString("mostPlayedChampName", mostPlayedChampName);
                                 preferencesEditor.apply();
                             }
-                        }
+                        } */
                     }
-                }); */
+                });
     }
 
     public void updatePlayerProfile(){
