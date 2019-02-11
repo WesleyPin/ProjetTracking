@@ -11,12 +11,20 @@ import android.widget.TextView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Iterator;
+import java.util.List;
+
 public class PlayerGlobalStatsActivity extends AppCompatActivity
 {
-    final static String API_KEY = "RGAPI-883a1df5-1e6d-4d94-9947-d5131168fce4"; // à remplacer si expirée
+    final static String API_KEY = "RGAPI-9b85d93d-272e-4766-a67f-c8981d1ac878"; // à remplacer si expirée
     String strProfileIconUrl;
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.wpin.projettracking";
@@ -201,26 +209,58 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
     public void getPlayerMostPlayedChampInfo(Context c){
         // Récupération du nom du champion le plus joué à partir de son id (ici, "key") TODO : à terminer
-//        Ion.with(this)
-//                .load("http://ddragon.leagueoflegends.com/cdn/" + strChampionVersion + "/data/fr_FR/champion.json") // le "fr_FR" est rentré dans le dur. A voir pour changer (chiant)
-//                .asJsonObject()
-//                .setCallback(new FutureCallback<JsonObject>() {
-//                    @Override
-//                    public void onCompleted(Exception e, JsonObject result) {
-//                        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
-//                        int i;
-//                        int mostPlayedChamp = mPreferences.getInt("mostPlayedChamp", 0);
-//                        JsonArray resultArray = result.get("data").getAsJsonArray();    // N'a pas l'air de fonctionner...
-//                        for(i = 0; i < resultArray.size(); i++){
-//                            JsonObject jObj = resultArray.get(i).getAsJsonObject();
-//                            if(mostPlayedChamp == jObj.get("key").getAsInt()){
-//                                String mostPlayedChampName = jObj.get("id").getAsString();
-//                                preferencesEditor.putString("mostPlayedChampName", mostPlayedChampName);
-//                                preferencesEditor.apply();
-//                            }
-//                        }
-//                    }
-//                });
+        String strChampionVersion = mPreferences.getString("championVersion", "null");
+
+
+
+
+
+        /* Ion.with(this)
+                .load("http://ddragon.leagueoflegends.com/cdn/" + strChampionVersion + "/data/fr_FR/champion.json") // le "fr_FR" est rentré dans le dur. A voir pour changer (chiant)
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+                        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+                        JSONArray listeChampion = new JSONArray();
+                        int i;
+                        int mostPlayedChamp = mPreferences.getInt("mostPlayedChamp", 0);
+                        try {
+                            JSONObject test = new JSONObject(result);
+                            test = test.getJSONObject("data");
+                            Iterator<String> it = test.keys();
+                            while(it.hasNext()) {
+                                String key = it.next();
+                                if (test.get(key) instanceof JSONObject) {
+                                    listeChampion.put(test.get(key));
+                                }
+                            }
+                            for(i = 0; i < listeChampion.length(); i++){
+                                JSONObject jObj = listeChampion.getJSONObject(i);
+                                if(mostPlayedChamp == jObj.getInt("key")){
+                                    String mostPlayedChampName = jObj.get("id").toString();
+                                    preferencesEditor.putString("mostPlayedChampName", mostPlayedChampName);
+                                    preferencesEditor.apply();
+                                }
+                            }
+                        } catch (JSONException exception) {
+                            exception.printStackTrace();
+                        }
+
+
+
+
+                        // JsonArray resultArray = result.get("data").getAsJsonArray(); // N'a pas l'air de fonctionner...
+                        /* for(i = 0; i < resultArray.size(); i++){
+                            JsonObject jObj = resultArray.get(i).getAsJsonObject();
+                            if(mostPlayedChamp == jObj.get("key").getAsInt()){
+                                String mostPlayedChampName = jObj.get("id").getAsString();
+                                preferencesEditor.putString("mostPlayedChampName", mostPlayedChampName);
+                                preferencesEditor.apply();
+                            }
+                        }
+                    }
+                }); */
     }
 
     public void updatePlayerProfile(){
