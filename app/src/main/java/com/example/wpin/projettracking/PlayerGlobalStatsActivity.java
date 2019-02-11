@@ -54,7 +54,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
         String strChampionVersion = mPreferences.getString("championVersion", "null");
 
-        getPlayerMostPlayedChampInfo(this);
+        // getPlayerMostPlayedChampInfo(this);
 
         TextView tvPlayerMostPlayedChamp = findViewById(R.id.tvPlayerMostPlayedChamp);
         String temp = tvPlayerMostPlayedChamp.getText().toString();
