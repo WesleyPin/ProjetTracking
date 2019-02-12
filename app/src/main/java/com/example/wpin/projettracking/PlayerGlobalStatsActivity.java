@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class PlayerGlobalStatsActivity extends AppCompatActivity
 {
-    final static String API_KEY = "RGAPI-9b85d93d-272e-4766-a67f-c8981d1ac878"; // à remplacer si expirée
+    final static String API_KEY = "RGAPI-216b52c1-d847-4d81-99ee-1327b7f8c69d"; // à remplacer si expirée
     String strProfileIconUrl;
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.wpin.projettracking";
@@ -41,20 +42,20 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
         String strSearchedUsername = getIntent().getStringExtra("searchedUsername");
         String strSearchedRegion = getIntent().getStringExtra("searchedRegion");
 
-        getLastVersions(this, strSearchedRegion);
+        getLastVersions(strSearchedRegion);
 
         String strRegion = getRegionName(strSearchedRegion);    // Récupération du nom de la région à mettre dans l'URL de requête
 
         TextView tvPlayerRegion = findViewById(R.id.tvPlayerRegion);
         tvPlayerRegion.setText(strSearchedRegion);  // On remplace "Région" par la région du joueur
 
-        getPlayerGlobalInformations(this, strSearchedUsername, strRegion);
+        getPlayerGlobalInformations(strSearchedUsername, strRegion);
 
-        getPlayerMostPlayedChamp(this);
+        getPlayerMostPlayedChamp();
 
         String strChampionVersion = mPreferences.getString("championVersion", "null");
 
-        getPlayerMostPlayedChampInfo(this);
+        getPlayerMostPlayedChampInfo();
 
         TextView tvMPCName = findViewById(R.id.tvMPCName);
 
@@ -114,7 +115,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
         return strRegion;
     }
 
-    public void getLastVersions(Context c, String strSearchedRegion){
+    public void getLastVersions(String strSearchedRegion){
         // Récupération de les dernières versions de l'API statique
         Ion.with(this)
                 .load("https://ddragon.leagueoflegends.com/realms/" + strSearchedRegion.toLowerCase() + ".json")
@@ -137,7 +138,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                 });
     }
 
-    public void getPlayerGlobalInformations(Context c, String strSearchedUsername, String strRegion){
+    public void getPlayerGlobalInformations(String strSearchedUsername, String strRegion){
         // Appel à l'API de LoL pour récupérer les informations du joueur. (Niveau pour l'instant) / Si ça fonctionne pas -> changer l'api key dans l'url.
         Ion.with(this)
                 .load("https://" + strRegion + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + strSearchedUsername + "?api_key=" + API_KEY)
@@ -174,7 +175,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                 });
     }
 
-    public void getPlayerMostPlayedChamp(Context c){
+    public void getPlayerMostPlayedChamp(){
         String strEncryptedSummonerId = mPreferences.getString("encryptedSummonerId", "null");
 
         // Requête et traitement pour savoir quel champ du joueur a le plus d'expérience
@@ -206,7 +207,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                 });
     }
 
-    public void getPlayerMostPlayedChampInfo(Context c){
+    public void getPlayerMostPlayedChampInfo(){
         // Récupération du nom du champion le plus joué à partir de son id (ici, "key") TODO : à terminer
         String strChampionVersion = mPreferences.getString("championVersion", "null");
 
