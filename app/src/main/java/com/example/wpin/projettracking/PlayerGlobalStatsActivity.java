@@ -51,17 +51,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
         getPlayerGlobalInformations(strSearchedUsername, strRegion);
 
-        getPlayerMostPlayedChamp();
 
-        String strChampionVersion = mPreferences.getString("championVersion", "null");
-
-        getPlayerMostPlayedChampInfo();
-
-        TextView tvMPCName = findViewById(R.id.tvMPCName);
-
-        String mostPlayedChampName = mPreferences.getString("mostPlayedChampName", "null");
-
-        tvMPCName.setText(mostPlayedChampName);
 
         Button btnUpdatePlayerProfile = findViewById(R.id.btnUpdatePlayerProfile);
         btnUpdatePlayerProfile.setOnClickListener(new View.OnClickListener() {
@@ -171,6 +161,10 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                         preferencesEditor.putString("playerLevel", strPlayerLevel);
 
                         preferencesEditor.apply();
+
+                        getPlayerMostPlayedChamp();
+
+
                     }
                 });
     }
@@ -203,6 +197,12 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                         preferencesEditor.putInt("mostPlayedChamp", mostPlayedChamp);
                         preferencesEditor.putInt("championPoints", highestChampionPoints);
                         preferencesEditor.apply();
+
+                        String strChampionVersion = mPreferences.getString("championVersion", "null");
+
+                        getPlayerMostPlayedChampInfo();
+
+
                     }
                 });
     }
@@ -243,6 +243,12 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                         } catch (JSONException exception) {
                             exception.printStackTrace();
                         }
+
+                        TextView tvMPCName = findViewById(R.id.tvMPCName);
+
+                        String mostPlayedChampName = mPreferences.getString("mostPlayedChampName", "null");
+
+                        tvMPCName.setText(mostPlayedChampName);
 
 
 
