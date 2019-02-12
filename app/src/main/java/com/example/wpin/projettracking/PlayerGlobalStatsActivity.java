@@ -179,7 +179,9 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        int i, highestChampionPoints = 0, mostPlayedChamp = 0, championPoints = 0, champ = 0;
+                        int i, championPoints = 0, champ = 0;
+                        int[] highestChampionPointsArray = {0, 0, 0};
+                        int[] mostPlayedChampArray = {0, 0, 0};
 
                         for(i = 0; i < result.size(); i++)  // Tant qu'il y a des objets Json à parser (tant qu'on a pas fait tous les champions ?)
                         {
@@ -188,14 +190,30 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                             championPoints = jObj.get("championPoints").getAsInt();
                             champ = jObj.get("championId").getAsInt();
 
-                            if(championPoints > highestChampionPoints){
-                                highestChampionPoints = championPoints;
-                                mostPlayedChamp = champ;
+                            if(championPoints > highestChampionPointsArray[0]){
+                                highestChampionPointsArray[0] = championPoints;
+                                mostPlayedChampArray[0] = champ;
+                            }
+                            else{
+                                if(championPoints > highestChampionPointsArray[1]){
+                                    highestChampionPointsArray[1] = championPoints;
+                                    mostPlayedChampArray[1] = champ;
+                                }
+                                else{
+                                    if(championPoints > highestChampionPointsArray[2]){
+                                        highestChampionPointsArray[2] = championPoints;
+                                        mostPlayedChampArray[2] = champ;
+                                    }
+                                }
                             }
                         }
                         SharedPreferences.Editor preferencesEditor = mPreferences.edit();
-                        preferencesEditor.putInt("mostPlayedChamp", mostPlayedChamp);
-                        preferencesEditor.putInt("championPoints", highestChampionPoints);
+                        preferencesEditor.putInt("mostPlayedChamp0", mostPlayedChampArray[0]);
+                        preferencesEditor.putInt("championPoints0", highestChampionPointsArray[0]);
+                        preferencesEditor.putInt("mostPlayedChamp1", mostPlayedChampArray[1]);
+                        preferencesEditor.putInt("championPoints1", highestChampionPointsArray[1]);
+                        preferencesEditor.putInt("mostPlayedChamp2", mostPlayedChampArray[2]);
+                        preferencesEditor.putInt("championPoints2", highestChampionPointsArray[2]);
                         preferencesEditor.apply();
 
                         String strChampionVersion = mPreferences.getString("championVersion", "null");
@@ -219,36 +237,50 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                     @Override
                     public void onCompleted(Exception e, String result) {
                         JSONArray listeChampion = new JSONArray();
-                        int i;
-                        int mostPlayedChamp = mPreferences.getInt("mostPlayedChamp", 0);
-                        try {
-                            JSONObject test = new JSONObject(result);
-                            test = test.getJSONObject("data");
-                            Iterator<String> it = test.keys();
-                            while(it.hasNext()) {
-                                String key = it.next();
-                                if (test.get(key) instanceof JSONObject) {
-                                    listeChampion.put(test.get(key));
+                        int i, j;
+                        String[] mostPlayedChampName = {"", "", ""};
+                        int[] mostPlayedChampArray = {0, 0, 0};
+                        mostPlayedChampArray[0] = mPreferences.getInt("mostPlayedChamp0", 0);
+                        mostPlayedChampArray[1] = mPreferences.getInt("mostPlayedChamp1", 0);
+                        mostPlayedChampArray[2] = mPreferences.getInt("mostPlayedChamp2", 0);
+                        for(j = 0; j < 3; j++)
+                        {
+                            try
+                            {
+                                JSONObject test = new JSONObject(result);
+                                test = test.getJSONObject("data");
+                                Iterator<String> it = test.keys();
+                                while (it.hasNext())
+                                {
+                                    String key = it.next();
+                                    if (test.get(key) instanceof JSONObject)
+                                    {
+                                        listeChampion.put(test.get(key));
+                                    }
                                 }
-                            }
-                            for(i = 0; i < listeChampion.length(); i++){
-                                JSONObject jObj = listeChampion.getJSONObject(i);
-                                if(mostPlayedChamp == jObj.getInt("key")){
-                                    String mostPlayedChampName = jObj.get("id").toString();
-                                    SharedPreferences.Editor preferencesEditor = mPreferences.edit();
-                                    preferencesEditor.putString("mostPlayedChampName", mostPlayedChampName);
-                                    preferencesEditor.apply();
+                                for (i = 0; i < listeChampion.length(); i++)
+                                {
+                                    JSONObject jObj = listeChampion.getJSONObject(i);
+                                    if (mostPlayedChampArray[j] == jObj.getInt("key"))
+                                    {
+                                        String strMostPlayedChampName = jObj.get("id").toString();
+                                        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+                                        preferencesEditor.putString("mostPlayedChampName" + j, strMostPlayedChampName);
+                                        preferencesEditor.apply();
+                                    }
                                 }
+                            } catch (JSONException exception)
+                            {
+                                exception.printStackTrace();
                             }
-                        } catch (JSONException exception) {
-                            exception.printStackTrace();
+                            mostPlayedChampName[j] = mPreferences.getString("mostPlayedChampName" + j, "null");
                         }
 
                         TextView tvMPCName = findViewById(R.id.tvMPCName);
 
-                        String mostPlayedChampName = mPreferences.getString("mostPlayedChampName", "null");
 
-                        tvMPCName.setText(mostPlayedChampName);
+
+                        tvMPCName.setText(mostPlayedChampName[0] + ", " + mostPlayedChampName[1] + ", " + mostPlayedChampName[2]);
 
 
 
