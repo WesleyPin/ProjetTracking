@@ -227,7 +227,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
     public void getPlayerMostPlayedChampInfo(){
         // Récupération du nom du champion le plus joué à partir de son id (ici, "key") TODO : à terminer
-        String strChampionVersion = mPreferences.getString("championVersion", "null");
+        final String strChampionVersion = mPreferences.getString("championVersion", "null");
 
 
         Ion.with(this)
@@ -266,6 +266,11 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                                         String strMostPlayedChampName = jObj.get("id").toString();
                                         SharedPreferences.Editor preferencesEditor = mPreferences.edit();
                                         preferencesEditor.putString("mostPlayedChampName" + j, strMostPlayedChampName);
+
+                                        JSONObject jObjImage = jObj.getJSONObject("image");
+                                        String fullImage = jObjImage.getString("full");
+                                        preferencesEditor.putString("mostPlayedChampImg" + j, fullImage);
+
                                         preferencesEditor.apply();
                                     }
                                 }
@@ -276,13 +281,20 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                             mostPlayedChampName[j] = mPreferences.getString("mostPlayedChampName" + j, "null");
                         }
 
+                        for(j = 0; j < 3; j++){
+                            ImageView[] ivMostPlayedChamp = {findViewById(R.id.ivMostPlayedChamp0),
+                                                            findViewById(R.id.ivMostPlayedChamp1),
+                                                            findViewById(R.id.ivMostPlayedChamp2)};
+
+                            String champIconUrl = "http://ddragon.leagueoflegends.com/cdn/" + strChampionVersion + "/img/champion/"
+                                                    + mPreferences.getString("mostPlayedChampImg" + j, "null");
+
+                            Ion.with(ivMostPlayedChamp[j]).load(champIconUrl);
+                        }
+
                         TextView tvMPCName = findViewById(R.id.tvMPCName);
 
-
-
                         tvMPCName.setText(mostPlayedChampName[0] + ", " + mostPlayedChampName[1] + ", " + mostPlayedChampName[2]);
-
-
 
                         /* // JsonArray resultArray = result.get("data").getAsJsonArray(); // N'a pas l'air de fonctionner...
                         for(i = 0; i < resultArray.size(); i++){
