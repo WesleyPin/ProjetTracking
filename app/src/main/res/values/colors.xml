@@ -4,4 +4,6 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorVictory">#4AC421</color>
+    <color name="colorDefeat">#E51D1D</color>
 </resources>

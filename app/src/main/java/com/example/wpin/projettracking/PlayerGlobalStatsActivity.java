@@ -2,6 +2,7 @@ package com.example.wpin.projettracking;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.koushikdutta.ion.Ion;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.Iterator;
 import java.util.List;
@@ -296,6 +298,8 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
                         tvMPCName.setText(mostPlayedChampName[0] + ", " + mostPlayedChampName[1] + ", " + mostPlayedChampName[2]);
 
+                        getPlayerLeagueInfo();
+
                         /* // JsonArray resultArray = result.get("data").getAsJsonArray(); // N'a pas l'air de fonctionner...
                         for(i = 0; i < resultArray.size(); i++){
                             JsonObject jObj = resultArray.get(i).getAsJsonObject();
@@ -307,6 +311,96 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                         } */
                     }
                 });
+    }
+
+    public void getPlayerLeagueInfo(){
+        String strEncryptedSummonerId = mPreferences.getString("encryptedSummonerId", "null");
+
+        Ion.with(this)
+                .load("https://euw1.api.riotgames.com/lol/league/v4/positions/by-summoner/" + strEncryptedSummonerId + "?api_key=" + API_KEY)
+                .asJsonArray()
+                .setCallback(new FutureCallback<JsonArray>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonArray result) {
+                        int i;
+                        boolean isRanked = false;
+
+                        TextView tvSoloGames = findViewById(R.id.tvSoloGames);
+                        TextView tvSoloVictories = findViewById(R.id.tvSoloWins);
+                        TextView tvSoloDefeats = findViewById(R.id.tvSoloLosses);
+                        TextView tvLeague = findViewById(R.id.tvLeague);
+                        ImageView ivLeague = findViewById(R.id.ivLeague);
+
+                        for(i = 0; i < result.size(); i++){
+                            JsonObject jObj = result.get(i).getAsJsonObject();
+                            if(jObj.get("queueType").getAsString().equals("RANKED_SOLO_5x5"))
+                            {
+                                String league = jObj.get("tier").getAsString();
+                                String rank = jObj.get("rank").getAsString();
+                                int wins = jObj.get("wins").getAsInt();
+                                int losses = jObj.get("losses").getAsInt();
+                                int leaguePoints = jObj.get("leaguePoints").getAsInt();
+
+                                SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+                                preferencesEditor.putString("league", league);
+                                preferencesEditor.putString("rank", rank);
+                                preferencesEditor.putInt("wins", wins);
+                                preferencesEditor.putInt("losses", losses);
+                                preferencesEditor.putInt("leaguePoints", leaguePoints);
+                                preferencesEditor.apply();
+
+                                int soloGames = wins + losses;
+                                tvSoloGames.setText(soloGames + "P");
+                                tvSoloVictories.setText(wins + "V");
+                                tvSoloDefeats.setText(losses + "D");
+                                tvLeague.setText(league + " " + rank + " - " + leaguePoints + " LP");
+                                Drawable drawLeagueEmblem = getLeagueEmblem(league);
+                                ivLeague.setImageDrawable(drawLeagueEmblem);
+
+                                isRanked = true;
+                            }
+                        }
+                        if(!isRanked){
+                            ivLeague.setImageResource(R.mipmap.ic_emblem_iron);
+                            tvLeague.setText("Unranked");
+                        }
+                    }
+                });
+    }
+
+    public Drawable getLeagueEmblem(String league){
+        Drawable drawLeagueEmblem = getResources().getDrawable(R.mipmap.ic_emblem_iron);
+
+        switch(league){
+            case "UNRANKED":
+                drawLeagueEmblem = getResources().getDrawable(R.mipmap.ic_emblem_iron);
+                break;
+            case "BRONZE":
+                drawLeagueEmblem = getResources().getDrawable(R.mipmap.ic_emblem_bronze);
+                break;
+            case "SILVER":
+                drawLeagueEmblem = getResources().getDrawable(R.mipmap.ic_emblem_silver);
+                break;
+            case "GOLD":
+                drawLeagueEmblem = getResources().getDrawable(R.mipmap.ic_emblem_gold);
+                break;
+            case "PLATINIUM":
+                drawLeagueEmblem = getResources().getDrawable(R.mipmap.ic_emblem_platinium);
+                break;
+            case "DIAMOND":
+                drawLeagueEmblem = getResources().getDrawable(R.mipmap.ic_emblem_diamond);
+                break;
+            case "MASTER":
+                drawLeagueEmblem = getResources().getDrawable(R.mipmap.ic_emblem_master);
+                break;
+            case "GRANDMASTER":
+                drawLeagueEmblem = getResources().getDrawable(R.mipmap.ic_emblem_grandmaster);
+                break;
+            case "CHALLENGER":
+                drawLeagueEmblem = getResources().getDrawable(R.mipmap.ic_emblem_challenger);
+                break;
+        }
+        return drawLeagueEmblem;
     }
 
     public void updatePlayerProfile(){

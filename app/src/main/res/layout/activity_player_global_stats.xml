@@ -7,6 +7,21 @@
     tools:context=".PlayerGlobalStatsActivity">
 
     <TextView
+        android:id="@+id/tvPlayerRank"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
+        android:text="Rang classé"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:fontFamily="@font/ropa_sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivBar1"
+        app:layout_constraintVertical_bias="0.496" />
+
+    <TextView
         android:id="@+id/tvRankSolo"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
@@ -249,5 +264,97 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPlayerRanks"
         app:layout_constraintVertical_bias="0.221"
         app:srcCompat="@mipmap/ic_white_bar_blue" />
+
+    <TextView
+        android:id="@+id/tvSoloGames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0P"
+        android:textColor="@color/colorPlayerBlue"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/tvSoloWins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0V"
+        android:textColor="@color/colorVictory"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/tvSoloLosses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0D"
+        android:textColor="@color/colorDefeat"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/tvSoloSlash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/tvSoloSlash1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <ImageView
+        android:id="@+id/ivLeague"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85"
+        tools:srcCompat="@mipmap/ic_emblem_iron" />
+
+    <TextView
+        android:id="@+id/tvLeague"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bronze V - 0 LP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.821" />
 
 </android.support.constraint.ConstraintLayout>
