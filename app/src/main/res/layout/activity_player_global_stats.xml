@@ -6,13 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".PlayerGlobalStatsActivity">
 
+    <TextView
+        android:id="@+id/tvRankSolo"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="8dp"
+        android:text="Rang Solo/Duo"
+        app:fontFamily="@font/ropa_sans"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayerRanks" />
+
+    <TextView
+        android:id="@+id/tvRankFlex"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Rang Flex"
+        app:fontFamily="@font/ropa_sans"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toEndOf="@+id/tvRankSolo"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayerRanks" />
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:background="@color/colorPlayerBlue"
-        android:orientation="vertical"
         android:elevation="18dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -101,12 +127,13 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivMpcBorder1"
-        app:layout_constraintVertical_bias="0.477" />
+        app:layout_constraintVertical_bias="0.868" />
 
     <TextView
         android:id="@+id/tvPlayerMostPlayedChamp"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
+        android:layout_marginTop="8dp"
         android:text="Champions les plus joués"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -115,8 +142,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.436" />
+        app:layout_constraintTop_toBottomOf="@+id/ivBar1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvPlayerRanks"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
+        android:text="Rang Classé"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:fontFamily="@font/ropa_sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.005" />
 
     <TextView
         android:id="@+id/tvMPCName"
@@ -196,14 +239,15 @@
     <ImageView
         android:id="@+id/ivBar1"
         android:layout_width="232dp"
-        android:layout_height="28dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.385"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayerRanks"
+        app:layout_constraintVertical_bias="0.221"
         app:srcCompat="@mipmap/ic_white_bar_blue" />
 
 </android.support.constraint.ConstraintLayout>
