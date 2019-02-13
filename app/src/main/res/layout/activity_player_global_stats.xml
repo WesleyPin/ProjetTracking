@@ -7,10 +7,12 @@
     tools:context=".PlayerGlobalStatsActivity">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:background="@color/colorPlayerBlue"
         android:orientation="vertical"
+        android:elevation="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -18,18 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:context=".MainActivity">
-
-        <ImageView
-            android:id="@+id/ivPlayerIcon"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_launcher_foreground"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.086"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tvPlayerUsername"
@@ -39,6 +29,8 @@
             android:text="Nom du joueur"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textSize="24sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/ropa_sans"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.975"
@@ -66,6 +58,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Niveau"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.975"
@@ -73,75 +66,144 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.855" />
 
+        <ImageView
+            android:id="@+id/ivBorderPlayer"
+            android:layout_width="123dp"
+            android:layout_height="121dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivPlayerIcon"
+            app:layout_constraintEnd_toEndOf="@+id/ivPlayerIcon"
+            app:layout_constraintStart_toStartOf="@+id/ivPlayerIcon"
+            app:layout_constraintTop_toTopOf="@+id/ivPlayerIcon"
+            app:srcCompat="@mipmap/ic_halo_final" />
+
+        <ImageView
+            android:id="@+id/ivPlayerIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
     </android.support.constraint.ConstraintLayout>
 
     <Button
         android:id="@+id/btnUpdatePlayerProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Mettre à jour le profil"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.909" />
+        app:layout_constraintTop_toBottomOf="@+id/ivMpcBorder1"
+        app:layout_constraintVertical_bias="0.477" />
 
     <TextView
         android:id="@+id/tvPlayerMostPlayedChamp"
         android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:text="Champions les plus joués :"
+        android:layout_height="26dp"
+        android:text="Champions les plus joués"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:fontFamily="@font/ropa_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="0.436" />
 
     <TextView
         android:id="@+id/tvMPCName"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
+        android:layout_marginTop="8dp"
         android:text="NomMPC"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:fontFamily="@font/ropa_sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.453" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayerMostPlayedChamp" />
+
+    <ImageView
+        android:id="@+id/ivMpcBorder0"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivMostPlayedChamp0"
+        app:layout_constraintEnd_toEndOf="@+id/ivMostPlayedChamp0"
+        app:layout_constraintStart_toStartOf="@+id/ivMostPlayedChamp0"
+        app:layout_constraintTop_toTopOf="@+id/ivMostPlayedChamp0"
+        app:srcCompat="@mipmap/ic_halo_final" />
+
+    <ImageView
+        android:id="@+id/ivMpcBorder1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivMostPlayedChamp1"
+        app:layout_constraintEnd_toEndOf="@+id/ivMostPlayedChamp1"
+        app:layout_constraintStart_toStartOf="@+id/ivMostPlayedChamp1"
+        app:layout_constraintTop_toTopOf="@+id/ivMostPlayedChamp1"
+        app:srcCompat="@mipmap/ic_halo_final" />
+
+    <ImageView
+        android:id="@+id/ivMpcBorder2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivMostPlayedChamp2"
+        app:layout_constraintEnd_toEndOf="@+id/ivMostPlayedChamp2"
+        app:layout_constraintStart_toStartOf="@+id/ivMostPlayedChamp2"
+        app:layout_constraintTop_toTopOf="@+id/ivMostPlayedChamp2"
+        app:srcCompat="@mipmap/ic_halo_final" />
 
     <ImageView
         android:id="@+id/ivMostPlayedChamp0"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="28dp"
+        android:cropToPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629"
+        app:layout_constraintTop_toBottomOf="@+id/tvMPCName"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
         android:id="@+id/ivMostPlayedChamp1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629"
+        app:layout_constraintTop_toBottomOf="@+id/tvMPCName"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
         android:id="@+id/ivMostPlayedChamp2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMPCName"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/ivBar1"
+        android:layout_width="232dp"
+        android:layout_height="28dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_bias="0.385"
+        app:srcCompat="@mipmap/ic_white_bar_blue" />
+
 </android.support.constraint.ConstraintLayout>
