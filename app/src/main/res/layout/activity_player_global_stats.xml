@@ -255,20 +255,20 @@
         android:id="@+id/tvSoloGames"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         android:text="0P"
         android:textColor="@color/colorPlayerBlue"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/tvSoloSlash"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlayerSummary" />
+        app:layout_constraintTop_toBottomOf="@+id/tvStatsCompl" />
 
     <TextView
         android:id="@+id/tvSoloWins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="8dp"
         android:text="0V"
         android:textColor="@color/colorVictory"
         android:textSize="18sp"
@@ -282,24 +282,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="0D"
         android:textColor="@color/colorDefeat"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/tvSoloSlash1"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlayerSummary" />
+        app:layout_constraintTop_toBottomOf="@+id/tvStatsCompl" />
 
     <TextView
         android:id="@+id/tvSoloSlash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         android:text="/"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/tvSoloWins"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlayerSummary" />
+        app:layout_constraintTop_toBottomOf="@+id/tvStatsCompl" />
 
     <TextView
         android:id="@+id/tvSoloSlash1"
@@ -307,11 +307,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="/"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/tvSoloWins"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlayerSummary" />
+        app:layout_constraintTop_toBottomOf="@+id/tvStatsCompl" />
 
     <ImageView
         android:id="@+id/ivLeague"
