@@ -300,6 +300,8 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
                         getPlayerLeagueInfo();
 
+                        getPlayerLeagueInfoFlex();
+
                         /* // JsonArray resultArray = result.get("data").getAsJsonArray(); // N'a pas l'air de fonctionner...
                         for(i = 0; i < resultArray.size(); i++){
                             JsonObject jObj = resultArray.get(i).getAsJsonObject();
@@ -401,6 +403,96 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                 break;
         }
         return drawLeagueEmblem;
+    }
+
+    public void getPlayerLeagueInfoFlex(){
+        String strEncryptedSummonerId = mPreferences.getString("encryptedSummonerId", "null");
+
+        Ion.with(this)
+                .load("https://euw1.api.riotgames.com/lol/league/v4/positions/by-summoner/" + strEncryptedSummonerId + "?api_key=" + API_KEY)
+                .asJsonArray()
+                .setCallback(new FutureCallback<JsonArray>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonArray result) {
+                        int i;
+                        boolean isRanked = false;
+
+                        TextView tvFlexGames = findViewById(R.id.tvFlexGames);
+                        TextView tvFlexVictories = findViewById(R.id.tvFlexWins);
+                        TextView tvFlexDefeats = findViewById(R.id.tvFlexLosses);
+                        TextView tvFlexLeague = findViewById(R.id.tvFlexLeague);
+                        ImageView ivFlexLeague = findViewById(R.id.ivFlexLeague);
+
+                        for(i = 0; i < result.size(); i++){
+                            JsonObject jObj = result.get(i).getAsJsonObject();
+                            if(jObj.get("queueType").getAsString().equals("RANKED_FLEX_SR"))
+                            {
+                                String flexLeague = jObj.get("tier").getAsString();
+                                String flexRank = jObj.get("rank").getAsString();
+                                int flexWins = jObj.get("wins").getAsInt();
+                                int flexLosses = jObj.get("losses").getAsInt();
+                                int flexLeaguePoints = jObj.get("leaguePoints").getAsInt();
+
+                                SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+                                preferencesEditor.putString("league", flexLeague);
+                                preferencesEditor.putString("rank", flexRank);
+                                preferencesEditor.putInt("wins", flexWins);
+                                preferencesEditor.putInt("losses", flexLosses);
+                                preferencesEditor.putInt("leaguePoints", flexLeaguePoints);
+                                preferencesEditor.apply();
+
+                                int flexGames = flexWins + flexLosses;
+                                tvFlexGames.setText(flexGames + "P");
+                                tvFlexVictories.setText(flexWins + "V");
+                                tvFlexDefeats.setText(flexLosses + "D");
+                                tvFlexLeague.setText(flexLeague + " " + flexRank + " - " + flexLeaguePoints + " LP");
+                                Drawable drawLeagueEmblemFlex = getLeagueEmblemFlex(flexLeague);
+                                ivFlexLeague.setImageDrawable(drawLeagueEmblemFlex);
+
+                                isRanked = true;
+                            }
+                        }
+                        if(!isRanked){
+                            ivFlexLeague.setImageResource(R.mipmap.ic_emblem_iron);
+                            tvFlexLeague.setText("Unranked");
+                        }
+                    }
+                });
+    }
+
+    public Drawable getLeagueEmblemFlex(String league){
+        Drawable drawLeagueEmblemFlex = getResources().getDrawable(R.mipmap.ic_emblem_iron);
+
+        switch(league){
+            case "UNRANKED":
+                drawLeagueEmblemFlex = getResources().getDrawable(R.mipmap.ic_emblem_iron);
+                break;
+            case "BRONZE":
+                drawLeagueEmblemFlex = getResources().getDrawable(R.mipmap.ic_emblem_bronze);
+                break;
+            case "SILVER":
+                drawLeagueEmblemFlex = getResources().getDrawable(R.mipmap.ic_emblem_silver);
+                break;
+            case "GOLD":
+                drawLeagueEmblemFlex = getResources().getDrawable(R.mipmap.ic_emblem_gold);
+                break;
+            case "PLATINIUM":
+                drawLeagueEmblemFlex = getResources().getDrawable(R.mipmap.ic_emblem_platinium);
+                break;
+            case "DIAMOND":
+                drawLeagueEmblemFlex = getResources().getDrawable(R.mipmap.ic_emblem_diamond);
+                break;
+            case "MASTER":
+                drawLeagueEmblemFlex = getResources().getDrawable(R.mipmap.ic_emblem_master);
+                break;
+            case "GRANDMASTER":
+                drawLeagueEmblemFlex = getResources().getDrawable(R.mipmap.ic_emblem_grandmaster);
+                break;
+            case "CHALLENGER":
+                drawLeagueEmblemFlex = getResources().getDrawable(R.mipmap.ic_emblem_challenger);
+                break;
+        }
+        return drawLeagueEmblemFlex;
     }
 
     public void updatePlayerProfile(){
