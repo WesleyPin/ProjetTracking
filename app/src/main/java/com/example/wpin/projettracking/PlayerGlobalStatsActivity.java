@@ -55,12 +55,12 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
 
 
-        Button btnUpdatePlayerProfile = findViewById(R.id.btnUpdatePlayerProfile);
+        /*Button btnUpdatePlayerProfile = findViewById(R.id.btnUpdatePlayerProfile);
         btnUpdatePlayerProfile.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {   // Quand on clique sur Mettre à jour le profil
                 updatePlayerProfile();  // TODO : On appelle la méthode updatePlayerProfile()
             }
-        });
+        });*/
     }
 
     // Fonction permettant de récupérer le nom exact de la région à mettre dans l'URL
