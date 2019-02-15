@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class PlayerGlobalStatsActivity extends AppCompatActivity
 {
-    final static String API_KEY = "RGAPI-8a799e73-db99-4a5e-a19d-72f5a6310041"; // à remplacer si expirée
+    final static String API_KEY = "RGAPI-53bc9736-077a-4e51-a039-a8ac37ca9558"; // à remplacer si expirée
     String strProfileIconUrl;
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.wpin.projettracking";
@@ -37,6 +38,9 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_global_stats);
+
+        ImageButton ibSummary = findViewById(R.id.ibSummary);
+        ibSummary.setImageResource(R.mipmap.ic_navigation_summary_on);
 
         mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
