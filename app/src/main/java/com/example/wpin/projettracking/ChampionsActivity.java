@@ -112,11 +112,9 @@ public class ChampionsActivity extends AppCompatActivity
                                 ibChampIcon.setLayoutParams(lp);
                                 tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1));
 
-                                Log.d("DEBUG", "row.addView(image " + i + ")");
                                 tableRow.addView(ibChampIcon);
 
                                 if(j == 4 || i + 1 == listeChampion.length()){
-                                    Log.d("DEBUG", "table.addView(row " + k + ")");
                                     tableChamp.addView(tableRow, k);
                                     j = 0;
                                     k++;

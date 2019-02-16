@@ -28,7 +28,7 @@ import java.util.List;
 
 public class PlayerGlobalStatsActivity extends AppCompatActivity
 {
-    final static String API_KEY = "RGAPI-502e1dc3-48ed-4e76-a1d2-0326e221923e"; // à remplacer si expirée
+    final static String API_KEY = "RGAPI-93a610eb-8c7f-4373-9357-f23792792394"; // à remplacer si expirée
     String strProfileIconUrl;
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.wpin.projettracking";
