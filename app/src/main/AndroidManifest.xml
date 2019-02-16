@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChampionsActivity"></activity>
+        <activity android:name=".ChampionDetailsActivity"></activity>
+        <activity
+            android:name=".ChampionsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".GameHistoryActivity"
             android:screenOrientation="portrait" />

@@ -1,11 +1,14 @@
 package com.example.wpin.projettracking;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
 public class GameHistoryActivity extends AppCompatActivity
 {
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile = "com.example.wpin.projettracking";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

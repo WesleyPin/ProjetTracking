@@ -2,29 +2,23 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameHistoryActivity">
+    tools:context=".ChampionDetailsActivity">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment2"
+    <TextView
+        android:id="@+id/tvChampName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="champName"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableLayout
-            android:id="@+id/table"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </ScrollView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
-        android:id="@+id/fragment2"
+        android:id="@+id/fragment4"
         android:name="com.example.wpin.projettracking.NavigationFragment"
         android:layout_width="match_parent"
         android:layout_height="75dp"

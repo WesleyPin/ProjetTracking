@@ -28,7 +28,7 @@ import java.util.List;
 
 public class PlayerGlobalStatsActivity extends AppCompatActivity
 {
-    final static String API_KEY = "RGAPI-53bc9736-077a-4e51-a039-a8ac37ca9558"; // à remplacer si expirée
+    final static String API_KEY = "RGAPI-502e1dc3-48ed-4e76-a1d2-0326e221923e"; // à remplacer si expirée
     String strProfileIconUrl;
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.wpin.projettracking";
@@ -266,19 +266,27 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                                 }
                                 for (i = 0; i < listeChampion.length(); i++)
                                 {
+                                    SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
                                     JSONObject jObj = listeChampion.getJSONObject(i);
-                                    if (mostPlayedChampArray[j] == jObj.getInt("key"))
+                                    int champId = jObj.getInt("key");
+
+                                    if (mostPlayedChampArray[j] == champId)
                                     {
                                         String strMostPlayedChampName = jObj.get("id").toString();
-                                        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
                                         preferencesEditor.putString("mostPlayedChampName" + j, strMostPlayedChampName);
 
                                         JSONObject jObjImage = jObj.getJSONObject("image");
                                         String fullImage = jObjImage.getString("full");
                                         preferencesEditor.putString("mostPlayedChampImg" + j, fullImage);
-
-                                        preferencesEditor.apply();
                                     }
+
+                                    JSONObject imageJObj = jObj.getJSONObject("image");
+                                    String champIcon = imageJObj.getString("full");
+                                    preferencesEditor.putString("champIcon" + champId, champIcon);
+
+                                    preferencesEditor.apply();
                                 }
                             } catch (JSONException exception)
                             {
