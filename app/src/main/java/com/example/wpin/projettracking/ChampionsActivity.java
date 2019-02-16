@@ -115,7 +115,7 @@ public class ChampionsActivity extends AppCompatActivity
                                 Log.d("DEBUG", "row.addView(image " + i + ")");
                                 tableRow.addView(ibChampIcon);
 
-                                if(j == 4){
+                                if(j == 4 || i + 1 == listeChampion.length()){
                                     Log.d("DEBUG", "table.addView(row " + k + ")");
                                     tableChamp.addView(tableRow, k);
                                     j = 0;
