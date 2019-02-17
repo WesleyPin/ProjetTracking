@@ -6,4 +6,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorVictory">#4AC421</color>
     <color name="colorDefeat">#E51D1D</color>
+    <color name="activenav">#ffffff</color>
+    <color name="inactivenav">#596d8c</color>
 </resources>
