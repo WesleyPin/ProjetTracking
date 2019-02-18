@@ -28,7 +28,7 @@ import java.util.List;
 
 public class PlayerGlobalStatsActivity extends AppCompatActivity
 {
-    final static String API_KEY = "RGAPI-c13396c7-3fca-44ed-8f81-001f5e87d712"; // à remplacer si expirée
+    final static String API_KEY = "RGAPI-48006a9c-f3b3-4b05-abe8-d64108ec0e44"; // à remplacer si expirée
     String strProfileIconUrl;
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.wpin.projettracking";
@@ -134,7 +134,7 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                 });
     }
 
-    public void getPlayerGlobalInformations(String strSearchedUsername, String strRegion){
+    public void getPlayerGlobalInformations(String strSearchedUsername, final String strRegion){
         // Appel à l'API de LoL pour récupérer les informations du joueur. (Niveau pour l'instant) / Si ça fonctionne pas -> changer l'api key dans l'url.
         Ion.with(this)
                 .load("https://" + strRegion + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + strSearchedUsername + "?api_key=" + API_KEY)
@@ -143,6 +143,8 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
                         SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
+                        preferencesEditor.putString("region", strRegion);
 
                         TextView tvPlayerUsername = findViewById(R.id.tvPlayerUsername);
                         String strPlayerUsername = result.get("name").getAsString();        // Récupération du pseudo exact (respect de la casse)
@@ -160,6 +162,9 @@ public class PlayerGlobalStatsActivity extends AppCompatActivity
 
                         String strEncryptedSummonerId = result.get("id").getAsString();
                         preferencesEditor.putString("encryptedSummonerId", strEncryptedSummonerId); // Sauvegarde du encrypted summoner id (on en a besoin pour autre requête)
+
+                        String strEncryptedAccountId = result.get("accountId").getAsString();
+                        preferencesEditor.putString("encryptedAccountId", strEncryptedAccountId);
 
                         String strPlayerLevel = result.get("summonerLevel").getAsString();
                         TextView tvPlayerLevel = findViewById(R.id.tvPlayerLevel);
